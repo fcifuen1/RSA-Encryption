@@ -1,4 +1,4 @@
-# CMSC 443 Cryptology - RSA Algorithm Project
+# RSA Algorithm Project
 #
 # Federico Cifuentes-Urtubey (fcifuen1)
 # Created: November 1st, 2016
@@ -9,7 +9,7 @@
 import random
 from time import time
 
-# Alg. 5.3 - Euclid's alg. to find the multiplicative inverse of a (mod b)
+# Euclid's alg. to find the multiplicative inverse of a (mod b)
 def MultInverse(b,a):
     a0 = a
     b0 = b
@@ -33,7 +33,7 @@ def MultInverse(b,a):
     return str(b) + " has no multiplicative inverse mod " + str(a)
 
 
-# Alg. 5.5 - Returns x^c mod n
+# Returns x^c mod n
 def SquareMult(x,c,n):
     z = 1
     l = c.bit_length()
@@ -50,7 +50,7 @@ def SquareMult(x,c,n):
     return z
 
 
-# Alg. 5.2 - Extended Euclidean Algorithm 
+# Extended Euclidean Algorithm 
 def gcd(a,b):    
     a0 = a
     b0 = b
@@ -202,18 +202,16 @@ def main():
     p = genPrime()
     t2 = time()
 
-    # Generating p ranges from 0.51 to 6+ seconds on my machine
     print("Generated p in: " + str(t2 - t1) + " seconds")
     
     t1 = time()
     q = genPrime()
     t2 = time()
 
-    # Generating q ranges from 0.44 to 8+ seconds on my machine
     print("Generated q in: " + str(t2 - t1) + " seconds" + '\n')
 
-    #print("P = " + str(p) + '\n')
-    #print("Q = " + str(q) + '\n')
+    print("P = " + str(p) + '\n')
+    print("Q = " + str(q) + '\n')
     
     pubKey, privKey = genKeyPair(p,q)
 
@@ -222,23 +220,21 @@ def main():
     #print("X = " + Decrypt(privKey, y) + '\n')
 
     
-    # n_main and a_main is the private key for the pub key I sent in the email
-    n_main = 74550924417846863652667066871367445685641461364428319995457292353260615021789047942276632416008426147746716636141963562375383555320033152254402870094583437878282504681113623226736063473585706170809563172605704756772272631106175413359381780372875201302665307086988262999803762851261516025160020301817346582289
-
-    a_main = 40110030610611193948250667346865485830898432522544602169840666209388503610090192157100369011878574787477119677546860716625409059900644009673678188020341678594452148819095557799115761390956662264259054395167887907833910999835897659657191999375117724159786183470064002705105912494402388375272876472269575915283
+    # n_main and a_main is the private key for the pub key I sent
+    #n_main = 74550924417846863652667066871367445685641461364428319995457292353260615021789047942276632416008426147746716636141963562375383555320033152254402870094583437878282504681113623226736063473585706170809563172605704756772272631106175413359381780372875201302665307086988262999803762851261516025160020301817346582289
+    #a_main = 40110030610611193948250667346865485830898432522544602169840666209388503610090192157100369011878574787477119677546860716625409059900644009673678188020341678594452148819095557799115761390956662264259054395167887907833910999835897659657191999375117724159786183470064002705105912494402388375272876472269575915283
     
-    fid = open('cifuentes-urtubey_cipher.txt', 'r')
-    num = long(fid.readline())
-    fid.close()
+    #fid = open('cifuentes-urtubey_cipher.txt', 'r')
+    #num = long(fid.readline())
+    #fid.close()
 
-    fid = open('cifuentes-urtubey_xstr.txt', 'w')
-    fid.write( Decrypt((n_main, a_main),num) )
-    fid.close()
-    print("Wrote decryption into file cifuentes-urtubey_xstr.txt")
+    #fid = open('cifuentes-urtubey_xstr.txt', 'w')
+    #fid.write( Decrypt((n_main, a_main),num) )
+    #fid.close()
+    #print("Wrote decryption into file cifuentes-urtubey_xstr.txt")
 
     tf = time()
 
-    # Fastest time: 0.578 seconds
-    #print("Program execution time: " + str(tf - ti) + " seconds")
+    print("Program execution time: " + str(tf - ti) + " seconds")
     
 main()
